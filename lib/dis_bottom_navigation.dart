@@ -1,7 +1,151 @@
 library dis_bottom_navigation;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+import 'package:flutter/material.dart';
+
+class DisBottomNavigation extends StatefulWidget {
+  final List<BottomNavigationBarItem> items;
+  final Color activeColor;
+  final Color color;
+
+  const DisBottomNavigation(
+      {Key key, @required this.items, this.activeColor, this.color})
+      : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _DisBottomNavigation();
+}
+
+class _DisBottomNavigation extends State<DisBottomNavigation> {
+  GlobalKey keyBottomBar = GlobalKey();
+  double positionBase, differenceBase, leftPositionIndicator;
+  int indexPage = 0;
+  Color baseColor, activeColor;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(afterLayout);
+  }
+
+  afterLayout(_) {
+    baseColor = widget.color ?? Colors.black45;
+    activeColor = widget.activeColor ?? Theme.of(context).primaryColor;
+    final sizeBottomBar =
+        (keyBottomBar.currentContext.findRenderObject() as RenderBox).size;
+    positionBase = ((sizeBottomBar.width / widget.items.length));
+    differenceBase = (positionBase - (positionBase / 2) + 2);
+    setState(() {
+      leftPositionIndicator = positionBase - differenceBase;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) => Container(
+        padding: EdgeInsets.fromLTRB(5, 0, 5, 5),
+        child: Material(
+          elevation: 5,
+          borderRadius: BorderRadius.circular(0),
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 12),
+            child: Stack(
+              key: keyBottomBar,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(bottom: 12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+//                children: createNavigationIconList(widget.items.asMap()),
+                  ),
+                ),
+                AnimatedPositioned(
+                    child:
+                        CircleAvatar(radius: 2.5, backgroundColor: activeColor),
+                    duration: Duration(milliseconds: 400),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                    left: leftPositionIndicator,
+                    bottom: 0),
+              ],
+            ),
+          ),
+        ),
+      );
+
+//  List<NavigationIconButtom> createNavigationIconList(Map<int, BottomNavigationBarItem> asMap) {}
+}
+
+class DisBottomNavigationBarItem {
+  final IconData icon;
+  final NavigationIconButtonTapCallback onTap;
+
+  DisBottomNavigationBarItem({@required this.icon, this.onTap})
+      : assert(icon != null);
+}
+
+typedef NavigationIconButtonTapCallback = void Function();
+
+class NavigationIconButton extends StatefulWidget {
+  final IconData icon;
+  final Color colorIcon;
+  final NavigationIconButtonTapCallback onTapInternalButton;
+  final NavigationIconButtonTapCallback onTapExternalButton;
+
+  const NavigationIconButton(
+      {Key key,
+      this.icon,
+      this.colorIcon,
+      this.onTapInternalButton,
+      this.onTapExternalButton})
+      : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => NavigationIconButtonState();
+}
+
+class NavigationIconButtonState extends State<NavigationIconButton>
+    with SingleTickerProviderStateMixin {
+  AnimationController controller;
+  Animation scaleAnimation;
+  double opacityIcon = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 200));
+    scaleAnimation = Tween<double>(begin: 1, end: 0.95).animate(controller);
+  }
+
+  @override
+  Widget build(BuildContext context) => GestureDetector(
+        onTapDown: (_) {
+          controller.forward();
+          setState(() {
+            opacityIcon = 0.7;
+          });
+        },
+        onTapUp: (_) {
+          controller.reverse();
+          setState(() {
+            opacityIcon = 1;
+          });
+        },
+        onTapCancel: () {
+          controller.reverse();
+          setState(() {
+            opacityIcon = 1;
+          });
+        },
+        onTap: () {
+          widget.onTapInternalButton();
+          widget.onTapExternalButton();
+        },
+        child: ScaleTransition(
+          scale: scaleAnimation,
+          child: AnimatedOpacity(
+            opacity: opacityIcon,
+            duration: Duration(milliseconds: 200),
+            child: Icon(widget.icon, color: widget.colorIcon),
+          ),
+        ),
+      );
 }
