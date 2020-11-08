@@ -48,12 +48,13 @@ class _DisBottomNavigation extends State<DisBottomNavigation> {
               children: <Widget>[
                 Padding(
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: createNavigationIconList(widget.items.asMap()),
                   ),
                 ),
                 AnimatedPositioned(
                     child:
-                        CircleAvatar(radius: 1.0, backgroundColor: activeColor),
+                        CircleAvatar(radius: 0, backgroundColor: activeColor),
                     duration: Duration(milliseconds: 400),
                     curve: Curves.fastLinearToSlowEaseIn,
                     left: leftPositionIndicator,
