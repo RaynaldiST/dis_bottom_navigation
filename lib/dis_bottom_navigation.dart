@@ -44,7 +44,7 @@ class _DisBottomNavigation extends State<DisBottomNavigation> {
         child: Material(
           elevation: 10,
           child: Container(
-            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.symmetric(vertical: 20),
             child: Stack(
               key: keyBottomBar,
