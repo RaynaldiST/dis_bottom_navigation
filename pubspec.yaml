@@ -2,7 +2,7 @@ name: dis_bottom_navigation
 description: A new Flutter package project.
 version: 0.0.1
 author: Ray Muchammad
-homepage:
+homepage: https://github.com/RaynaldiST/dis_bottom_navigation.git
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
