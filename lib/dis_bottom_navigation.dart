@@ -57,7 +57,7 @@ class _DisBottomNavigation extends State<DisBottomNavigation> {
                 ),
                 AnimatedPositioned(
                     child: Padding(
-                      padding: EdgeInsets.only(left: 30),
+                      padding: EdgeInsets.only(left: 35),
                       child: CircleAvatar(
                           radius: 2.5, backgroundColor: activeColor),
                     ),
