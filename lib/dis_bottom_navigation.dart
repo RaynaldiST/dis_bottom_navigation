@@ -49,7 +49,7 @@ class _DisBottomNavigation extends State<DisBottomNavigation> {
               key: keyBottomBar,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(bottom: 1),
+                  padding: EdgeInsets.only(bottom: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: createNavigationIconList(widget.items.asMap()),
