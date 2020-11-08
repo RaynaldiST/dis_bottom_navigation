@@ -3,7 +3,7 @@ library dis_bottom_navigation;
 import 'package:flutter/material.dart';
 
 class DisBottomNavigation extends StatefulWidget {
-  final List<BottomNavigationBarItem> items;
+  final List<DisBottomNavigationBarItem> items;
   final Color activeColor;
   final Color color;
 
@@ -54,7 +54,7 @@ class _DisBottomNavigation extends State<DisBottomNavigation> {
                   padding: EdgeInsets.only(bottom: 12),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-//                children: createNavigationIconList(widget.items.asMap()),
+                    children: createNavigationIconList(widget.items.asMap()),
                   ),
                 ),
                 AnimatedPositioned(
