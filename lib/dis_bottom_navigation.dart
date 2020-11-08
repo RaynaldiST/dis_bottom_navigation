@@ -49,19 +49,22 @@ class _DisBottomNavigation extends State<DisBottomNavigation> {
               key: keyBottomBar,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(bottom: 15, left: 20, right: 20),
+                  padding: EdgeInsets.only(bottom: 15, left: 60, right: 60),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: createNavigationIconList(widget.items.asMap()),
                   ),
                 ),
-                AnimatedPositioned(
-                    child:
-                        CircleAvatar(radius: 2.5, backgroundColor: activeColor),
-                    duration: Duration(milliseconds: 400),
-                    curve: Curves.fastLinearToSlowEaseIn,
-                    left: leftPositionIndicator,
-                    bottom: 0),
+                Padding(
+                  padding: EdgeInsets.only(left: 60, right: 60),
+                  child: AnimatedPositioned(
+                      child: CircleAvatar(
+                          radius: 2.5, backgroundColor: activeColor),
+                      duration: Duration(milliseconds: 400),
+                      curve: Curves.fastLinearToSlowEaseIn,
+                      left: leftPositionIndicator,
+                      bottom: 0),
+                ),
               ],
             ),
           ),
