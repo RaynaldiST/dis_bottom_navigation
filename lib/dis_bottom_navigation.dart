@@ -42,9 +42,7 @@ class _DisBottomNavigation extends State<DisBottomNavigation> {
   @override
   Widget build(BuildContext context) => Container(
         child: Material(
-          elevation: 10,
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 5),
             child: Stack(
               key: keyBottomBar,
               children: <Widget>[
@@ -56,7 +54,7 @@ class _DisBottomNavigation extends State<DisBottomNavigation> {
                 ),
                 AnimatedPositioned(
                     child:
-                        CircleAvatar(radius: 2.5, backgroundColor: activeColor),
+                        CircleAvatar(radius: 1.0, backgroundColor: activeColor),
                     duration: Duration(milliseconds: 400),
                     curve: Curves.fastLinearToSlowEaseIn,
                     left: leftPositionIndicator,
