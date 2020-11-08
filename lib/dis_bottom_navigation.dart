@@ -41,12 +41,12 @@ class _DisBottomNavigation extends State<DisBottomNavigation> {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Material(
           elevation: 0,
           borderRadius: BorderRadius.circular(0),
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 12),
+            padding: EdgeInsets.symmetric(vertical: 5),
             child: Stack(
               key: keyBottomBar,
               children: <Widget>[
