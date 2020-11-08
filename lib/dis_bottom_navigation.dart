@@ -55,16 +55,16 @@ class _DisBottomNavigation extends State<DisBottomNavigation> {
                     children: createNavigationIconList(widget.items.asMap()),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 60, right: 60),
-                  child: AnimatedPositioned(
+                AnimatedPositioned(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 60, right: 60),
                       child: CircleAvatar(
                           radius: 2.5, backgroundColor: activeColor),
-                      duration: Duration(milliseconds: 400),
-                      curve: Curves.fastLinearToSlowEaseIn,
-                      left: leftPositionIndicator,
-                      bottom: 0),
-                ),
+                    ),
+                    duration: Duration(milliseconds: 400),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                    left: leftPositionIndicator,
+                    bottom: 0),
               ],
             ),
           ),
