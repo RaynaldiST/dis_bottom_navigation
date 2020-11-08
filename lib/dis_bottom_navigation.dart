@@ -44,7 +44,7 @@ class _DisBottomNavigation extends State<DisBottomNavigation> {
         child: Material(
           elevation: 10,
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 5),
+            padding: EdgeInsets.symmetric(vertical: 20),
             child: Stack(
               key: keyBottomBar,
               children: <Widget>[
