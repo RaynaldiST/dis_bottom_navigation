@@ -70,7 +70,28 @@ class _DisBottomNavigation extends State<DisBottomNavigation> {
         ),
       );
 
-//  List<NavigationIconButtom> createNavigationIconList(Map<int, BottomNavigationBarItem> asMap) {}
+  List<NavigationIconButton> createNavigationIconList(
+      Map<int, DisBottomNavigationBarItem> mapItem) {
+    List<NavigationIconButton> children = List<NavigationIconButton>();
+
+    mapItem.forEach((index, item) => children.add(NavigationIconButton(
+            item.icon,
+            (index == indexPage) ? activeColor : baseColor,
+            item.onTap, () {
+          changeOptionBottomBar(index);
+        })));
+    return children;
+  }
+
+  void changeOptionBottomBar(int indexPageSelected) {
+    if (indexPageSelected != indexPage) {
+      setState(() {
+        leftPositionIndicator =
+            (positionBase * (indexPageSelected + 1)) - differenceBase;
+      });
+      indexPage = indexPageSelected;
+    }
+  }
 }
 
 class DisBottomNavigationBarItem {
@@ -89,12 +110,9 @@ class NavigationIconButton extends StatefulWidget {
   final NavigationIconButtonTapCallback onTapInternalButton;
   final NavigationIconButtonTapCallback onTapExternalButton;
 
-  const NavigationIconButton(
-      {Key key,
-      this.icon,
-      this.colorIcon,
-      this.onTapInternalButton,
-      this.onTapExternalButton})
+  const NavigationIconButton(this.icon, this.colorIcon,
+      this.onTapInternalButton, this.onTapExternalButton,
+      {Key key})
       : super(key: key);
 
   @override
