@@ -64,7 +64,6 @@ class _DisBottomNavigation extends State<DisBottomNavigation> {
                     duration: Duration(milliseconds: 400),
                     curve: Curves.fastLinearToSlowEaseIn,
                     left: leftPositionIndicator,
-                    right: ,
                     bottom: 0),
               ],
             ),
