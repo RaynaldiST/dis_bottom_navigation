@@ -44,13 +44,12 @@ class _DisBottomNavigation extends State<DisBottomNavigation> {
         child: Material(
           elevation: 10,
           child: Container(
-            width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.symmetric(vertical: 20),
             child: Stack(
               key: keyBottomBar,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(bottom: 15),
+                  padding: EdgeInsets.only(bottom: 15, left: 20, right: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: createNavigationIconList(widget.items.asMap()),
