@@ -33,7 +33,7 @@ class _DisBottomNavigation extends State<DisBottomNavigation> {
     final sizeBottomBar =
         (keyBottomBar.currentContext.findRenderObject() as RenderBox).size;
     positionBase = ((sizeBottomBar.width / widget.items.length));
-    differenceBase = (positionBase - (positionBase / 2));
+    differenceBase = (positionBase - (positionBase / 2) + 2);
     setState(() {
       leftPositionIndicator = positionBase - differenceBase;
     });
@@ -49,7 +49,7 @@ class _DisBottomNavigation extends State<DisBottomNavigation> {
               key: keyBottomBar,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(bottom: 15, left: 60, right: 60),
+                  padding: EdgeInsets.only(bottom: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: createNavigationIconList(widget.items.asMap()),
