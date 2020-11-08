@@ -33,7 +33,7 @@ class _DisBottomNavigation extends State<DisBottomNavigation> {
     final sizeBottomBar =
         (keyBottomBar.currentContext.findRenderObject() as RenderBox).size;
     positionBase = ((sizeBottomBar.width / widget.items.length));
-    differenceBase = (positionBase - (positionBase / 2) + 2);
+    differenceBase = (positionBase - (positionBase / 2));
     setState(() {
       leftPositionIndicator = positionBase - differenceBase;
     });
@@ -57,13 +57,14 @@ class _DisBottomNavigation extends State<DisBottomNavigation> {
                 ),
                 AnimatedPositioned(
                     child: Padding(
-                      padding: EdgeInsets.only(left: 35),
+                      padding: EdgeInsets.only(left: 35, right: 35),
                       child: CircleAvatar(
                           radius: 2.5, backgroundColor: activeColor),
                     ),
                     duration: Duration(milliseconds: 400),
                     curve: Curves.fastLinearToSlowEaseIn,
                     left: leftPositionIndicator,
+                    right: ,
                     bottom: 0),
               ],
             ),
